@@ -1,9 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
 
-const initialState = {
-  loading: true,
-  cartItems: [],
-};
+const initialState = Cookies.get("cart")
+  ? {
+      ...JSON.parse(Cookies.get("cart")),
+      loading: true,
+      // showSidebar: false,
+    }
+  : {
+      loading: true,
+      // showSidebar: false,
+      cartItems: [],
+    };
 const addDecimals = (num) => {
   return (Math.round(num * 100) / 100).toFixed(2);
 };
@@ -32,7 +40,7 @@ const cartSlice = createSlice({
           Number(state.shippingPrice) +
           Number(state.taxPrice)
       );
-      // Cookie.set("cart", JSON.stringify(state));
+      Cookies.set("cart", JSON.stringify(state));
     },
     removeFromCart: (state, action) => {
       state.cartItems = state.cartItems.filter((x) => x.id !== action.payload);
@@ -46,7 +54,7 @@ const cartSlice = createSlice({
           Number(state.shippingPrice) +
           Number(state.taxPrice)
       );
-      // Cookies.set("cart", JSON.stringify(state));
+      Cookies.set("cart", JSON.stringify(state));
     },
     hideLoading: (state) => {
       state.loading = false;

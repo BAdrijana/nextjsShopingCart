@@ -27,7 +27,7 @@ function AddToCart({
     dispatch(addToCart({ ...product, qty: newQty }));
     if (redirect) router.push("/cart");
   };
-  console.log("here", product);
+
   // useEffect(() => {
   //   dispatch(hideLoading());
   // }, [dispatch]);

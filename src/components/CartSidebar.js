@@ -13,7 +13,7 @@ export default function CartSidebar() {
   const removeToCartHandler = (id) => {
     dispatch(removeFromCart(id));
   };
-  console.log(itemsPrice, cartItems);
+
   return (
     <div className="fixed top-0 right-0 w-32 h-full shadow-lg border-l border-l-gray-700 overflow-scroll">
       {loading ? (
